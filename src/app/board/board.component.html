@@ -1,0 +1,13 @@
+<a routerLink="/dashboard">Go Back</a>
+<h1>TicTacToe Game!</h1>
+<h2 *ngIf="boardService.gameOver===false">Now is: {{boardService.activePlayer}}'s turn</h2>
+<p>
+  <app-alert [message]="boardService.gameResultMessage"></app-alert>
+</p>
+
+<div class="grid">
+  <div *ngFor="let square of boardService.board" (click)="boardService.onSquareClick(square)" class="cell" appRainbow>
+    {{square.value}}
+  </div>
+</div>
+<button (click)="boardService.restart()">RESTART</button>
