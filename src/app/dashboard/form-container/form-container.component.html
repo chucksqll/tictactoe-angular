@@ -1,0 +1,15 @@
+<h2>form</h2>
+<ng-container [ngSwitch]="currentStep">
+  <app-base-form 
+    *ngSwitchCase="'baseInfo'" 
+    (changeStep)="changeStep('baseInfoStep', $event)"
+  ></app-base-form>
+  <app-date-form
+    *ngSwitchCase="'dateInfo'"  
+    (changeStep)="changeStep('dateInfoStep', 'back')"
+    (submitForm)="submitForm()"
+  ></app-date-form>
+
+</ng-container>
+    <!-- [startingForm]="userForm.get('baseInfo').value"  -->
+    <!-- (subformInitialized)="subformInitialized('baseInfo', $event)"  -->

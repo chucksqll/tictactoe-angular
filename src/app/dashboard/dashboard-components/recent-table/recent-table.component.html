@@ -1,0 +1,65 @@
+<div class="row">
+    <!-- column -->
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <!-- title -->
+                <div class="d-md-flex align-items-center">
+                    <div>
+                        <h4 class="card-title font-16 text-uppercase">Latest data</h4>
+                        <!-- <h5 class="card-subtitle">Overview of Top Selling Items</h5> -->
+                    </div>
+                    <div class="ml-auto">
+                        <div class="dl">
+                            <select class="form-control">
+                                <option value="0" selected>March 2017</option>
+                                <option value="1">April 2017</option>
+                                <option value="2">May 2017</option>
+                                <option value="3">June 2017</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- title -->
+
+                <div class="table-responsive">
+                    <table class="table v-middle nowrap">
+                        <thead>
+                            <tr>
+                                <th class="border-top-0">#</th>
+                                <th class="border-top-0">success</th>
+                                <th class="border-top-0">timestamp</th>
+                                <th class="border-top-0">base</th>
+                                <th class="border-top-0">date</th>
+                                <!-- <th class="border-top-0">rates</th> -->
+                                <ng-container *ngFor='let rate of rates'>
+                                    <th class="border-top-0">{{rate}}</th>
+                                </ng-container>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor='let data of tableData'>
+                                <td> </td>
+                                <td> {{data.success}} </td>
+                                <td> {{data.timestamp}} </td>
+                                <td> {{data.base}} </td>
+                                <td> {{data.date}} </td>
+                                <!-- <td> {{data.rates | json}}</td> -->
+                                <!-- {{data | keyvalue}} -->
+                                <ng-container *ngFor='let rate of data.sortedRatesValues'>
+                                    <td>{{rate}}</td>
+                                </ng-container>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- <button (click)="getRates()">312312</button> -->
+<!-- {{tableData | json}} -->
+<app-form-container
+(addItemFromForm)="addItemFromForm($event)"
+></app-form-container>
