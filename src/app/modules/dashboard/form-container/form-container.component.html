@@ -4,6 +4,10 @@
     *ngSwitchCase="'baseInfo'" 
     (changeStep)="changeStep('baseInfoStep', $event)"
   ></app-base-form>
+  <app-rates-form
+    *ngSwitchCase="'ratesInfo'" 
+    (changeStep)="changeStep('ratesInfoStep', $event)"
+  ></app-rates-form>
   <app-date-form
     *ngSwitchCase="'dateInfo'"  
     (changeStep)="changeStep('dateInfoStep', 'back')"

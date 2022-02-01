@@ -2,28 +2,20 @@ import { Component, OnInit, Output, EventEmitter, Injectable } from '@angular/co
 import { Form, FormBuilder, FormGroup } from '@angular/forms';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-type Step = 'baseInfo' | 'dateInfo';
+type Step = 'baseInfo' | 'dateInfo' | 'ratesInfo';
 @Component({
   selector: 'app-form-container',
   templateUrl: './form-container.component.html',
   styleUrls: ['./form-container.component.css']
 })
 export class FormContainerComponent implements OnInit {
-  // private currentStepBs: BehaviorSubject<Step> = new BehaviorSubject<Step>('baseInfo');
-  // public currentStep$: Observable<Step> = this.currentStepBs.asObservable(); 
-  // store do tego lub zmienna do wywalenia zeby uproscic, zwykla zmienna wystarczy
   public userForm: FormGroup = {} as FormGroup;
   @Output() addItemFromForm: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
   constructor(private _fb: FormBuilder, private formStore: FormStore) {}
   currentStep: Step = 'baseInfo';
   ngOnInit() {
-    // this.userForm = this._fb.group({
-    //   baseInfo: null,
-    //   dateInfo: null
-    // });
     this.formStore.currentStep$.subscribe( data => {
         this.currentStep = data
-        // this.changeStep();
       }
     );
   }
@@ -32,27 +24,29 @@ export class FormContainerComponent implements OnInit {
     console.log(typeof(group));
     this.userForm.setControl(name, group);
   }
-  // zrob store np formStore, i subskrybuje go w componencie currentStep$
   changeStep(currentStep: string, direction: 'forward' | 'back') { // ustawic na wartosci liczbowe, zeby bylo latwiej
-    console.log("changestep")
-    console.log(currentStep, direction); 
     switch(currentStep) {
       case 'baseInfoStep':
         if (direction === 'forward') {
-          // this.formStore.currentStepBs.next('dateInfo');
-          this.formStore.currencyStep = 'dateInfo';
+          this.formStore.currencyStep = 'ratesInfo';
         }
         break;
+      case 'ratesInfoStep':
+        if (direction === 'forward') {
+          this.formStore.currencyStep = 'dateInfo';
+        }
+        if (direction === 'back') {
+          this.formStore.currencyStep = 'baseInfo';
+        }
+          break;
       case 'dateInfoStep':
         if (direction === 'back') {
-          // this.currentStepBs.next('baseInfo');
-          this.formStore.currencyStep = 'baseInfo';
+          this.formStore.currencyStep = 'ratesInfo';
         }
         break;
     }
   }
   submitForm() {
-    // console.log("submitForm!!!!!")
     const formValues = this.userForm.value;
     console.log(this.formStore.userForm.controls.baseInfo.value);
     this.addItemFromForm.emit(this.formStore.userForm); // to change
@@ -79,6 +73,7 @@ export class FormStore {
   private userFormBs: BehaviorSubject<FormGroup> = new BehaviorSubject<FormGroup>(
     this._fb.group({
         baseInfo: null,
+        ratesInfo: null,
         dateInfo: null
     }));
   public userForm$: Observable<FormGroup> = this.userFormBs.asObservable(); 

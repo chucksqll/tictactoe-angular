@@ -1,0 +1,10 @@
+<form [formGroup]="baseInfoForm" (ngSubmit)="doChangeStep('forward')">
+    <div>
+      <label for="base">
+        Base
+      </label>
+      <input id="base" type="text" formControlName="baseInfo">
+    </div>
+
+    <button class="button" type="submit">Next</button>
+</form>

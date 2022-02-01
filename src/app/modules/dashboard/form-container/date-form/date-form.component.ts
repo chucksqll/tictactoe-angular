@@ -10,9 +10,9 @@ import { FormStore } from "../form-container.component";
 })
 export class DateFormComponent implements OnInit {
   // osadz komponenty w dialogu
-  @Input() startingForm?: FormGroup;
-  @Output() subformInitialized: EventEmitter<FormGroup> =
-    new EventEmitter<FormGroup>();
+  // @Input() startingForm?: FormGroup;
+  // @Output() subformInitialized: EventEmitter<FormGroup> =
+  //   new EventEmitter<FormGroup>();
   @Output() changeStep: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() submitForm: EventEmitter<boolean> = new EventEmitter<boolean>();
   
@@ -31,6 +31,7 @@ export class DateFormComponent implements OnInit {
     //   this.subformInitialized.emit(this.dateInfoForm);
     // }, 0)
     this.formStore.userForm$.subscribe( data => {
+      console.log(data);
       this.dateInfoForm = data
       // this.changeStep();
     })

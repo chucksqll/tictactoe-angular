@@ -13,21 +13,21 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { FullComponent } from './layouts/full/full.component';
+import { FullComponent } from './modules/layouts/full/full.component';
 
-import { NavigationComponent } from './shared/header-navigation/navigation.component';
-import { SidebarComponent } from './shared/sidebar/sidebar.component';
-import { BreadcrumbComponent } from './shared/breadcrumb/breadcrumb.component';
+import { NavigationComponent } from './modules/shared/header-navigation/navigation.component';
+import { SidebarComponent } from './modules/shared/sidebar/sidebar.component';
+import { BreadcrumbComponent } from './modules/shared/breadcrumb/breadcrumb.component';
 
 
 import { Approutes } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SpinnerComponent } from './shared/spinner.component';
+import { SpinnerComponent } from './modules/shared/spinner.component';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
-import { FormStore } from './dashboard/form-container/form-container.component';
+import { FormStore } from './modules/dashboard/form-container/form-container.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -43,7 +43,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     FullComponent,
     NavigationComponent,
     SidebarComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
   ],
   imports: [
     CommonModule,

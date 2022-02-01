@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 
 import { LatestData, LatestDatas } from './recent-table-data';
-import { ExchangeRatesService } from '../../exchange-rates.service';
+import { ExchangeRatesService } from '../../../shared/services/exchange-rate-service/exchange-rates.service';
 
 @Component({
   selector: 'app-recent-table',
@@ -61,37 +61,23 @@ export class RecentTableComponent implements OnInit {
     for(let i in this.tableData){
       let rates = this.tableData[i].rates as any;
       for(let key of Object.keys(rates)){
-        // console.log(key, rates[key]);
         array.push(key);
       }
     }
     array = Array.from(new Set(array));
-    // let ratesList: {} = {};
     this.unpackRatesAndFill(array);
     return array;
   }
   unpackRatesAndFill(ratesNames: any) {
-    // let unpackedRates: string[] = [];
     for(let i in this.tableData){
       let rates = this.tableData[i].rates as any;
       for(let key of Object.keys(ratesNames)){
-        // console.log(key, ratesNames[key], rates);
         if(!(ratesNames[key] in rates)){
-          // console.log('ustawic 0');
           rates[ratesNames[key]] = 0;
         }
-        // array[i].rates[key] = key;
-        // rates[i].rates[ratesNames[key]] = ratesNames[key];
       }
-      console.log('beka', rates);
-      // unpackedRates.push(rates);
-      console.log(Array.from(rates))
       this.tableData[i].sortedRatesValues = Array.from(Object.values(rates)) as string[];
-      console.log(this.tableData[i])
     }
-    // console.log('dupa', unpackedRates);
-    // this.tableData
-    // return rates;
   }
   
 }

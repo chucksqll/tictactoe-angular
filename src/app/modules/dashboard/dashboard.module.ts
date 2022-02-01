@@ -4,12 +4,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { ChartsModule } from 'ng2-charts';
 import { DashboardComponent } from './dashboard.component';
-import { YearlychartComponent } from './dashboard-components/yearlychart/yearlychart.component';
 import { RecentTableComponent } from './dashboard-components/recent-table/recent-table.component';
 import { FormContainerComponent } from './form-container/form-container.component';
 import { BaseFormComponent } from './form-container/base-form/base-form.component';
 import { DateFormComponent } from './form-container/date-form/date-form.component';
-
+import { RatesFormComponent } from './form-container/rates-form/rates-form.component';
 
 
 const routes: Routes = [
@@ -28,8 +27,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [FormsModule, CommonModule, RouterModule.forChild(routes), ChartsModule, ReactiveFormsModule,],
-  declarations: [DashboardComponent, YearlychartComponent, 
-    RecentTableComponent, FormContainerComponent, BaseFormComponent, DateFormComponent]
+  declarations: [DashboardComponent, 
+    RecentTableComponent, FormContainerComponent, BaseFormComponent, DateFormComponent, RatesFormComponent]
 })
 export class DashboardModule {
 

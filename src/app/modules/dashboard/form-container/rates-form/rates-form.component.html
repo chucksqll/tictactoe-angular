@@ -1,0 +1,16 @@
+<form [formGroup]="ratesInfoForm">
+
+    <button class="button" (click)="addInputs()">Add more fields </button>
+    <ng-container *ngIf="ratesInfoForm" >
+        <div formArrayName="rates" *ngFor="let rate of ratesInfoForm.controls.rates?.value; let i = index">
+            <ng-container [formGroupName]="i">
+                {{i}}
+            <input type="text" placeholder="rate name" formControlName="rate">
+            <input id="rateValue" type="text" placeholder="rate value" formControlName="rateValue">
+            </ng-container>
+        </div>
+    </ng-container>
+    
+    <button class="button" (click)="doChangeStep('back')">Back </button>
+    <button class="button" (click)="doChangeStep('forward')" type="submit">Next</button>
+</form>

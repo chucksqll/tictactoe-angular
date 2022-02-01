@@ -11,7 +11,6 @@ import { FormStore } from '../form-container.component';
 export class BaseFormComponent implements OnInit, OnDestroy {
   // osadz komponenty w dialogu
   @Input() startingForm?: FormGroup;
-  @Output() subformInitialized: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
   @Output() changeStep: EventEmitter<boolean> = new EventEmitter<boolean>();
   public baseInfoForm?: FormGroup;
   constructor(private _fb: FormBuilder, private formStore: FormStore ) {}
@@ -29,6 +28,7 @@ export class BaseFormComponent implements OnInit, OnDestroy {
     // }, 0)
     // this.formStore.userForm
     this.formStore.userForm$.subscribe( data => {
+      console.log(data);
       this.baseInfoForm = data
       // this.changeStep();
     }
