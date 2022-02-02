@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { FormStore } from '../form-container.component';
+import { FormStoreService } from '../../services/form-store.service';
 @Component({
   selector: 'app-base-form',
   templateUrl: './base-form.component.html',
@@ -13,31 +13,18 @@ export class BaseFormComponent implements OnInit, OnDestroy {
   @Input() startingForm?: FormGroup;
   @Output() changeStep: EventEmitter<boolean> = new EventEmitter<boolean>();
   public baseInfoForm?: FormGroup;
-  constructor(private _fb: FormBuilder, private formStore: FormStore ) {}
+  constructor(private _fb: FormBuilder, private formStore: FormStoreService ) {}
   ngOnInit() {
-    // if (this.startingForm) {
-    //   this.baseInfoForm = this.startingForm;
-    // } else {
-    //   this.baseInfoForm = this._fb.group({
-    //     base: 'base1',
-    //     // ... continue with the other fields
-    //   })
-    // }
-    // setTimeout(() => {
-    //   this.subformInitialized.emit(this.baseInfoForm);
-    // }, 0)
-    // this.formStore.userForm
     this.formStore.userForm$.subscribe( data => {
-      console.log(data);
+      // console.log(data);
       this.baseInfoForm = data
-      // this.changeStep();
     }
   );
   }
   ngOnDestroy() {
   }
   doChangeStep(direction: any) {
-    console.log('doChangeStep')
+    // console.log('doChangeStep') 
     this.changeStep.emit(direction);
   }
 }

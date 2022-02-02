@@ -46,9 +46,14 @@
                                 <td> {{data.date}} </td>
                                 <!-- <td> {{data.rates | json}}</td> -->
                                 <!-- {{data | keyvalue}} -->
-                                <ng-container *ngFor='let rate of data.sortedRatesValues'>
+                                <ng-container *ngFor='let rate of data.sortedRatesValues; let i=index'>
                                     <td>{{rate}}</td>
                                 </ng-container>
+                                <!-- <td> {{data.rates | json}} </td>
+                                <ng-container *ngFor='let rate of data.rates |json; let i=index'>
+                                    {{rate[i]}}
+                                    <td>{{rate}}</td>
+                                </ng-container> -->
                             </tr>
                         </tbody>
                     </table>

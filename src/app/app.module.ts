@@ -27,7 +27,7 @@ import { SpinnerComponent } from './modules/shared/spinner.component';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
-import { FormStore } from './modules/dashboard/form-container/form-container.component';
+import { FormStoreService } from './modules/currency/services/form-store.service';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -60,7 +60,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       provide: LocationStrategy,
       useClass: PathLocationStrategy
     },
-    FormStore,
+    FormStoreService,
     FormBuilder,
 	{
       provide: PERFECT_SCROLLBAR_CONFIG,

@@ -10,8 +10,8 @@ export const ROUTES: RouteInfo[] = [
     submenu: []
   },
   {
-    path: '/dashboard',
-    title: 'Dashboard',
+    path: '/currency',
+    title: 'Currency',
     icon: 'mdi mdi-gauge',
     class: '',
     extralink: false,

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit } from "@angular/core";
 import { Input, Output } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
-import { FormStore } from "../form-container.component";
+import { FormStoreService } from "../../services/form-store.service";
 
 @Component({
   selector: "app-date-form",
@@ -17,7 +17,7 @@ export class DateFormComponent implements OnInit {
   @Output() submitForm: EventEmitter<boolean> = new EventEmitter<boolean>();
   
   public dateInfoForm?: FormGroup;
-  constructor(private _fb: FormBuilder, private formStore: FormStore) {}
+  constructor(private _fb: FormBuilder, private formStore: FormStoreService) {}
   ngOnInit() {
     // if (this.startingForm) {
     //   this.dateInfoForm = this.startingForm;

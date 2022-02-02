@@ -8,15 +8,15 @@ export const Approutes: Routes = [
     path: '',
     component: FullComponent,
     children: [
-      { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+      { path: '', redirectTo: '/currency', pathMatch: 'full' },
       {
-        path: 'dashboard',
-        loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule)
+        path: 'currency',
+        loadChildren: () => import('./modules/currency/currency.module').then(m => m.CurrencyModule)
       },
     ]
   },
   {
     path: '**',
-    redirectTo: '/dashboard'
+    redirectTo: '/currency'
   }
 ];

@@ -1,6 +1,7 @@
-import { Component, OnInit, Output, EventEmitter, Injectable } from '@angular/core';
-import { Form, FormBuilder, FormGroup } from '@angular/forms';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+
+import { FormStoreService } from '../services/form-store.service';
 
 type Step = 'baseInfo' | 'dateInfo' | 'ratesInfo';
 @Component({
@@ -11,7 +12,7 @@ type Step = 'baseInfo' | 'dateInfo' | 'ratesInfo';
 export class FormContainerComponent implements OnInit {
   public userForm: FormGroup = {} as FormGroup;
   @Output() addItemFromForm: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
-  constructor(private _fb: FormBuilder, private formStore: FormStore) {}
+  constructor(private formStore: FormStoreService) {}
   currentStep: Step = 'baseInfo';
   ngOnInit() {
     this.formStore.currentStep$.subscribe( data => {
@@ -54,34 +55,4 @@ export class FormContainerComponent implements OnInit {
     // submit the form with a service
   }
 
-}
-@Injectable({
-  providedIn: 'root'
-})
-export class FormStore {
-  constructor(private _fb: FormBuilder){}
-  private currentStepBs: BehaviorSubject<Step> = new BehaviorSubject<Step>('baseInfo');
-  public currentStep$: Observable<Step> = this.currentStepBs.asObservable(); 
-  get currencyStep(): Step {
-    const servicesDict = this.currentStepBs.getValue();
-    return servicesDict;
-  }
-  set currencyStep(val: Step) {
-      this.currentStepBs.next(val);
-  }
-
-  private userFormBs: BehaviorSubject<FormGroup> = new BehaviorSubject<FormGroup>(
-    this._fb.group({
-        baseInfo: null,
-        ratesInfo: null,
-        dateInfo: null
-    }));
-  public userForm$: Observable<FormGroup> = this.userFormBs.asObservable(); 
-  get userForm(): FormGroup {
-    return this.userFormBs.getValue();
-  }
-  set userForm(val: FormGroup) {
-      this.userFormBs.next(val);
-  }
-  
 }
